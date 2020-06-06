@@ -1,0 +1,56 @@
+.box {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  grid-template-rows: auto;
+  margin-top: 0;
+}
+
+img {
+  display: inline;
+  grid-column: 1/2;
+  margin-left: 1em;
+}
+
+h1 {
+  grid-column: 2/3;
+  width: max-content;
+  margin-left: 0.5em;
+}
+
+form {
+  margin-left: 1em;
+}
+
+label {
+  font-weight: bold;
+  grid-column: 1/2;
+}
+
+input {
+  grid-column: 2/3;
+  width: max-content;
+}
+
+table {
+  grid-column: 2/3;
+  width: max-content;
+}
+
+button {
+  width: max-content;
+  background-color: gold;
+  grid-column: 2/3;
+}
+
+ul {
+  list-style-type: none;
+  grid-column: 2/3;
+  padding: 0;
+  margin-left: 1em;
+  color: orange;
+  font-weight: bold;
+}
+
+body.busy-cursor {
+  cursor: progress;
+}
