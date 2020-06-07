@@ -1,42 +1,33 @@
 import React, { useState } from 'react';
 import './App.css';
-import axios from 'axios';
+
 import DisplayImages from './DisplayImages';
 
 import Header from './Header';
 import LoadingSpinner from './LoadingSpinner';
 
 function App() {
-  const [images, setImages] = useState([]);
-
   const [isLoading, setIsLoading] = useState(false);
+  console.log('value of isLoading', isLoading);
+  if (!isLoading) {
+    var requestOptions = {
+      method: 'GET',
+      redirect: 'follow',
+    };
+    setIsLoading(true);
+    console.log('Before fetch');
+    fetch('http://127.0.0.1:5000/list_of_images', requestOptions)
+      .then((response) => response.text())
 
-  let status = postImagesData(`http://127.0.0.1:5000/list_of_images`, {});
+      .then((result) => console.log(result))
 
-  if (status === null) alert('Axios error. Please contact admin !!');
-  setIsLoading(false);
+      .catch((error) => console.log('error', error))
 
-  async function postImagesData(url = '', data = {}) {
-    await axios
-      .post(url, data)
-      .then((res) => {
-        console.log(res);
-        console.log(res.data);
-        console.log(res.data.data);
-        const tempResults = res.data.data;
-        console.log(tempResults.length);
-        console.log(tempResults);
-        setImages([...images, ...res.data.data]);
-        const x = typeof responses;
-        console.log('TypeOfResponse', x);
-        console.log('RESPONSES ', images);
-        console.log('RESPONSES ', images);
-      })
-      .catch((err) => {
-        console.log(err);
-        return null;
-      });
+      
+      
   }
+
+ 
 
   return (
     <div>
@@ -47,9 +38,7 @@ function App() {
       <h1>images</h1>
 
       <div>{!isLoading ? <LoadingSpinner /> : null}</div>
-      <div className="box">
-        <DisplayImages images={images} />
-      </div>
+      <div className="box"></div>
     </div>
   );
 }
