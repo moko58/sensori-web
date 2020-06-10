@@ -1,14 +1,18 @@
 import React, { useState } from 'react';
-import './App.css';
+import { UserProvider } from './UserContext';
 
-import DisplayImages from './DisplayImages';
+import DisplayItems from './DisplayItems';
+
+import HelloWorld from './HelloWorld';
 
 import Header from './Header';
 import LoadingSpinner from './LoadingSpinner';
 
 function App() {
   const [isLoading, setIsLoading] = useState(false);
-  const [images, setImages] = useState([]);
+  const [itemImages, setItemImages] = useState([]);
+
+  const items = { clicked: false };
 
   console.log('value of isLoading', isLoading);
   if (!isLoading) {
@@ -23,8 +27,8 @@ function App() {
 
       .then((result) => {
         console.log('results', result.data);
-        setImages([...images, ...result.data]);
-        console.log('images', images);
+        setItemImages([...itemImages, ...result.data]);
+        console.log('images', itemImages);
       })
       .catch((err) => {
         console.log(err);
@@ -33,18 +37,23 @@ function App() {
   }
 
   return (
-    <div>
-      <Header />
+    <UserProvider value={items}>
+      <div>
+        <Header />
 
-      <br />
+        <br />
 
-      <h1>images</h1>
+        <h1>Items</h1>
 
-      <div>{!isLoading ? <LoadingSpinner /> : null}</div>
-      <div className="box">
-        <DisplayImages images={images} />
+        <div>{!isLoading ? <LoadingSpinner /> : null}</div>
+        <div className="box">
+          <DisplayItems itemImages={itemImages} />
+        </div>
+        <div>
+          <HelloWorld />
+        </div>
       </div>
-    </div>
+    </UserProvider>
   );
 }
 
