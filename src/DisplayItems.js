@@ -1,14 +1,15 @@
-import React , { useState }  from 'react';
+import React, { useState } from 'react';
 
-import { useContext } from 'react'
-import UserContext from './UserContext'
+import { useContext } from 'react';
+import ItemContext from './ItemContext';
 
 import { Card, Button } from 'react-bootstrap';
 
 import HelloWorld from './HelloWorld';
 
 function DisplayItems(props) {
-  const items = useContext(UserContext)
+  const selectedItem = useContext(ItemContext);
+
   console.log(props);
   const [isClicked, setIsClicked] = useState(false);
   console.log('In Re2');
@@ -30,7 +31,6 @@ function DisplayItems(props) {
               variant="primary"
               onClick={(e) => {
                 handleClick(e, item.id);
-                items.
               }}
             >
               Where is it ?
@@ -39,9 +39,7 @@ function DisplayItems(props) {
         </Card>
       ))}
       {isClicked ? <HelloWorld /> : null}
-      
     </div>
-    
   );
 }
 
