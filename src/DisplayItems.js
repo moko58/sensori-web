@@ -8,7 +8,9 @@ import { Card, Button } from 'react-bootstrap';
 import HelloWorld from './HelloWorld';
 
 function DisplayItems(props) {
-  const selectedItem = useContext(ItemContext);
+  const {itemState} = useContext(ItemContext);
+
+  console.log('Selected Item is ', itemState);
 
   console.log(props);
   const [isClicked, setIsClicked] = useState(false);

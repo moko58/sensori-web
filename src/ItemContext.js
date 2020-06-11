@@ -1,13 +1,8 @@
 import React from 'react';
 
-const myOptions = [
-  {
-    itemKey: 0,
-    itemName: '',
-    itemSelected: false,
-  },
-];
+const ItemContext = React.createContext();
 
-const ItemContext = React.createContext(myOptions);
+export const UserProvider = ItemContext.Provider;
+export const UserConsumer = ItemContext.Consumer;
 
 export default ItemContext;

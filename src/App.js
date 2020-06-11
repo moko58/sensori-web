@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { UserProvider } from './UserContext';
+import ItemContext from './ItemContext';
 
 import DisplayItems from './DisplayItems';
 
@@ -8,11 +8,22 @@ import HelloWorld from './HelloWorld';
 import Header from './Header';
 import LoadingSpinner from './LoadingSpinner';
 
+const myOptions = [
+  {
+    itemKey: 0,
+    itemName: '',
+    itemSelected: false,
+  },
+];
+
 function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [itemImages, setItemImages] = useState([]);
-
-  const items = { clicked: false };
+  const [listState, setListState] = useState({
+    itemKey: 0,
+    itemName: '',
+    itemSelected: false,
+  });
 
   console.log('value of isLoading', isLoading);
   if (!isLoading) {
@@ -37,7 +48,7 @@ function App() {
   }
 
   return (
-    <UserProvider value={items}>
+    <ItemContext.Provider value={listState}>
       <div>
         <Header />
 
@@ -53,7 +64,7 @@ function App() {
           <HelloWorld />
         </div>
       </div>
-    </UserProvider>
+    </ItemContext.Provider>
   );
 }
 
