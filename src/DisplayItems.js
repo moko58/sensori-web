@@ -8,9 +8,9 @@ import { Card, Button } from 'react-bootstrap';
 import HelloWorld from './HelloWorld';
 
 function DisplayItems(props) {
-  const {itemState} = useContext(ItemContext);
+  const { selectedItemId, setSelectedItemId } = useContext(ItemContext);
 
-  console.log('Selected Item is ', itemState);
+  console.log('Selected Item is ', selectedItemId);
 
   console.log(props);
   const [isClicked, setIsClicked] = useState(false);
@@ -33,6 +33,7 @@ function DisplayItems(props) {
               variant="primary"
               onClick={(e) => {
                 handleClick(e, item.id);
+                setSelectedItemId(item.id);
               }}
             >
               Where is it ?

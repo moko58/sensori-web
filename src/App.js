@@ -19,11 +19,11 @@ const myOptions = [
 function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [itemImages, setItemImages] = useState([]);
-  const [listState, setListState] = useState({
-    itemKey: 0,
-    itemName: '',
-    itemSelected: false,
-  });
+  const [selectedItemId, setSelectedItemId] = useState(-1);
+
+  const updateValue = (val) => {
+    setSelectedItemId(val);
+  };
 
   console.log('value of isLoading', isLoading);
   if (!isLoading) {
@@ -48,7 +48,7 @@ function App() {
   }
 
   return (
-    <ItemContext.Provider value={listState}>
+    <ItemContext.Provider value={{ selectedItemId, setSelectedItemId }}>
       <div>
         <Header />
 
@@ -58,10 +58,12 @@ function App() {
 
         <div>{!isLoading ? <LoadingSpinner /> : null}</div>
         <div className="box">
-          <DisplayItems itemImages={itemImages} />
+        {(selectedItemId===-1) ? <DisplayItems itemImages={itemImages} /> :  <HelloWorld itemId={selectedItemId} />}
+          
         </div>
         <div>
-          <HelloWorld />
+          console.log("In App.js", selectedItemId)
+         
         </div>
       </div>
     </ItemContext.Provider>

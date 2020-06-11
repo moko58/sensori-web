@@ -1,10 +1,11 @@
 import React from 'react';
 
-function HelloWorld() {
+function HelloWorld(props) {
   return (
     <div className="box">
       <h1>Hello World !</h1>
-      console.log("Hello World")
+      
+      <div>Selected Id is {props.itemId}</div>
     </div>
   );
 }
