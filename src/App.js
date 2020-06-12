@@ -4,6 +4,7 @@ import ItemContext from './ItemContext';
 import DisplayItems from './DisplayItems';
 
 import HelloWorld from './HelloWorld';
+import DisplayLocations from './DisplayLocations';
 
 import Header from './Header';
 import LoadingSpinner from './LoadingSpinner';
@@ -11,7 +12,7 @@ import LoadingSpinner from './LoadingSpinner';
 function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [itemImages, setItemImages] = useState([]);
-  const [itemLocation, setItemLocation] = useState({
+  const [itemLocations, setItemLocations] = useState({
     itemKey: -1,
     locationKey: -1,
   });
@@ -37,9 +38,13 @@ function App() {
         return null;
       });
   }
+  let props = {
+    itemImages: itemImages,
+    itemLocations: itemLocations,
+  };
 
   return (
-    <ItemContext.Provider value={{ itemLocation, setItemLocation }}>
+    <ItemContext.Provider value={{ itemLocations, setItemLocations }}>
       <div>
         <Header />
 
@@ -49,11 +54,15 @@ function App() {
 
         <div>{!isLoading ? <LoadingSpinner /> : null}</div>
         <div className="box">
-          {itemLocation.itemKey === -1 ? (
-            <DisplayItems itemImages={itemImages} />
+          {itemLocations.itemKey === -1 && itemLocations.locationKey=== -1 ? (
+            <DisplayItems {...props} />
           ) : (
-            <HelloWorld itemLocation={itemLocation} />
+            <DisplayLocations {...props} />
           )}
+        </div>
+        <div className="box">
+          {itemLocations.itemKey !== -1 && itemLocations.locationKey!== -1 ? (
+            <p>Result is {itemLocations.itemKey} and {itemLocations.locationKey}</p>) : null}
         </div>
       </div>
     </ItemContext.Provider>

@@ -5,10 +5,10 @@ import ItemContext from './ItemContext';
 
 import { Card, Button } from 'react-bootstrap';
 
-function DisplayItems(props) {
+function DisplayLocations(props) {
   const { itemLocations, setItemLocations } = useContext(ItemContext);
 
-  console.log('Selected Item is ', itemLocations.itemKey);
+  console.log('Selected Item is ', itemLocations.locationKey);
 
   console.log(props);
 
@@ -22,7 +22,7 @@ function DisplayItems(props) {
   return (
     <div>
       {props.itemImages
-        .filter((item) => item.item_or_location === 'I')
+        .filter((item) => item.item_or_location === 'L')
         .map((item) => (
           <Card style={{ width: '18rem' }}>
             <Card.Img variant="top" src={item.uri} />
@@ -36,7 +36,7 @@ function DisplayItems(props) {
 
                   setItemLocations((prevState) => ({
                     ...prevState,
-                    itemKey: item.id,
+                    locationKey: item.id,
                   }));
                 }}
               >
@@ -49,4 +49,4 @@ function DisplayItems(props) {
   );
 }
 
-export default DisplayItems;
+export default DisplayLocations;
