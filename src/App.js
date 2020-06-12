@@ -8,22 +8,13 @@ import HelloWorld from './HelloWorld';
 import Header from './Header';
 import LoadingSpinner from './LoadingSpinner';
 
-const myOptions = [
-  {
-    itemKey: 0,
-    itemName: '',
-    itemSelected: false,
-  },
-];
-
 function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [itemImages, setItemImages] = useState([]);
-  const [selectedItemId, setSelectedItemId] = useState(-1);
-
-  const updateValue = (val) => {
-    setSelectedItemId(val);
-  };
+  const [itemLocation, setItemLocation] = useState({
+    itemKey: -1,
+    locationKey: -1,
+  });
 
   console.log('value of isLoading', isLoading);
   if (!isLoading) {
@@ -48,7 +39,7 @@ function App() {
   }
 
   return (
-    <ItemContext.Provider value={{ selectedItemId, setSelectedItemId }}>
+    <ItemContext.Provider value={{ itemLocation, setItemLocation }}>
       <div>
         <Header />
 
@@ -58,12 +49,11 @@ function App() {
 
         <div>{!isLoading ? <LoadingSpinner /> : null}</div>
         <div className="box">
-        {(selectedItemId===-1) ? <DisplayItems itemImages={itemImages} /> :  <HelloWorld itemId={selectedItemId} />}
-          
-        </div>
-        <div>
-          console.log("In App.js", selectedItemId)
-         
+          {itemLocation.itemKey === -1 ? (
+            <DisplayItems itemImages={itemImages} />
+          ) : (
+            <HelloWorld itemLocation={itemLocation} />
+          )}
         </div>
       </div>
     </ItemContext.Provider>
