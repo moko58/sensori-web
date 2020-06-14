@@ -15,6 +15,8 @@ function App() {
   const [itemLocations, setItemLocations] = useState({
     itemKey: -1,
     locationKey: -1,
+    itemUri: '',
+    locationUri: '',
   });
 
   console.log('value of isLoading', isLoading);
@@ -54,15 +56,24 @@ function App() {
 
         <div>{!isLoading ? <LoadingSpinner /> : null}</div>
         <div className="box">
-          {itemLocations.itemKey === -1 && itemLocations.locationKey=== -1 ? (
+          {itemLocations.itemKey === -1 && itemLocations.locationKey === -1 ? (
             <DisplayItems {...props} />
           ) : (
             <DisplayLocations {...props} />
           )}
         </div>
         <div className="box">
-          {itemLocations.itemKey !== -1 && itemLocations.locationKey!== -1 ? (
-            <p>Result is {itemLocations.itemKey} and {itemLocations.locationKey}</p>) : null}
+          {itemLocations.itemKey !== -1 && itemLocations.locationKey !== -1 ? (
+            <>
+              <p>
+                Result is {itemLocations.itemKey} and{' '}
+                {itemLocations.locationKey}
+              </p>
+              <p>
+                Uri are {itemLocations.itemUri} and {itemLocations.locationUri}
+              </p>
+            </>
+          ) : null}
         </div>
       </div>
     </ItemContext.Provider>

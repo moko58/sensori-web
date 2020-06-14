@@ -37,6 +37,7 @@ function DisplayLocations(props) {
                   setItemLocations((prevState) => ({
                     ...prevState,
                     locationKey: item.id,
+                    locationUri: item.uri,
                   }));
                 }}
               >
