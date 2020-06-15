@@ -20,32 +20,35 @@ function DisplayItems(props) {
   }
 
   return (
-    <div>
-      {props.itemImages
-        .filter((item) => item.item_or_location === 'I')
-        .map((item) => (
-          <Card style={{ width: '18rem' }}>
-            <Card.Img variant="top" src={item.uri} />
-            <Card.Body>
-              <Card.Title>{item.name}</Card.Title>
-              <Card.Text>{item.description}</Card.Text>
-              <Button
-                variant="primary"
-                onClick={(e) => {
-                  handleClick(e, item.id);
+    <div class="row">
+       <div class="card col-sm-6 col-lg-3 border-top-0">
+        {props.itemImages
+          .filter((item) => item.item_or_location === 'I')
+          .map((item) => (
+            <Card style={{ width: '18rem' }}>
+              <Card.Img variant="top" src={item.uri} />
+              <Card.Body>
+                <Card.Title>{item.name}</Card.Title>
+                <Card.Text>{}</Card.Text>
+                <button
+                type="button" class="btn btn-primary"
+                  
+                  onClick={(e) => {
+                    handleClick(e, item.id);
 
-                  setItemLocations((prevState) => ({
-                    ...prevState,
-                    itemKey: item.id,
-                    itemUri: item.uri
-                  }));
-                }}
-              >
-                Where is it ?
-              </Button>
-            </Card.Body>
-          </Card>
-        ))}
+                    setItemLocations((prevState) => ({
+                      ...prevState,
+                      itemKey: item.id,
+                      itemUri: item.uri,
+                    }));
+                  }}
+                >
+                  Where is it ?
+                </button>
+              </Card.Body>
+            </Card>
+          ))}
+      </div>
     </div>
   );
 }
