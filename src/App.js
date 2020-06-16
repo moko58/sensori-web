@@ -6,6 +6,8 @@ import DisplayItems from './DisplayItems';
 import HelloWorld from './HelloWorld';
 import DisplayLocations from './DisplayLocations';
 
+import DisplayMatch from './DisplayMatch';
+
 import Header from './Header';
 import LoadingSpinner from './LoadingSpinner';
 
@@ -45,6 +47,11 @@ function App() {
     itemLocations: itemLocations,
   };
 
+  let matchingImages = {
+    matchingItem: '',
+    matchingLocation: '',
+  };
+
   return (
     <ItemContext.Provider value={{ itemLocations, setItemLocations }}>
       <div>
@@ -52,30 +59,20 @@ function App() {
 
         <br />
 
-        <h1>Items</h1>
+       
 
         <div>{!isLoading ? <LoadingSpinner /> : null}</div>
         <div className="box">
           {itemLocations.itemKey === -1 && itemLocations.locationKey === -1 ? (
             <DisplayItems {...props} />
+          ) : itemLocations.itemKey !== -1 &&
+            itemLocations.locationKey !== -1 ? (
+            <DisplayMatch images={matchingImages} />
           ) : (
             <DisplayLocations {...props} />
           )}
         </div>
-        <div className="box">
-          {itemLocations.itemKey !== -1 && itemLocations.locationKey !== -1 ? (
-            <>
-              <p>
-                Result is {itemLocations.itemKey} and{' '}
-                {itemLocations.locationKey}
-              </p>
-              <p>
-                Uri are {itemLocations.itemUri} and {itemLocations.locationUri}
-              </p>
-            </>
-          ) : null}
         </div>
-      </div>
     </ItemContext.Provider>
   );
 }

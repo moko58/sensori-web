@@ -20,7 +20,9 @@ function DisplayLocations(props) {
   }
 
   return (
+    
     <div class="row">
+       <h1>Locations</h1>
       <div class="card col-sm-6 col-lg-3 border-top-0">
         {props.itemImages
           .filter((item) => item.item_or_location === 'L')
