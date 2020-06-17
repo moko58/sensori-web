@@ -3,7 +3,7 @@ import React from 'react';
 import { useContext } from 'react';
 import ItemContext from './ItemContext';
 
-import { Card, Button } from 'react-bootstrap';
+import { Card  } from 'react-bootstrap';
 
 function DisplayLocations(props) {
   const { itemLocations, setItemLocations } = useContext(ItemContext);
@@ -38,7 +38,6 @@ function DisplayLocations(props) {
                   variant="primary"
                   onClick={(e) => {
                     handleClick(e, item.id);
-
                     setItemLocations((prevState) => ({
                       ...prevState,
                       locationKey: item.id,

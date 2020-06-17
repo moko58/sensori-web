@@ -3,7 +3,7 @@ import React from 'react';
 import { useContext } from 'react';
 import ItemContext from './ItemContext';
 
-import { Card, Button } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 
 function DisplayMatch(props) {
   const { itemLocations, setItemLocations } = useContext(ItemContext);

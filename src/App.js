@@ -1,15 +1,9 @@
 import React, { useState } from 'react';
 import ItemContext from './ItemContext';
-
 import DisplayItems from './DisplayItems';
-
-import HelloWorld from './HelloWorld';
 import DisplayLocations from './DisplayLocations';
-
 import DisplayMatch from './DisplayMatch';
-
 import Header from './Header';
-import LoadingSpinner from './LoadingSpinner';
 
 function App() {
   const [isLoading, setIsLoading] = useState(false);
@@ -42,6 +36,7 @@ function App() {
         return null;
       });
   }
+
   let props = {
     itemImages: itemImages,
     itemLocations: itemLocations,
@@ -56,12 +51,8 @@ function App() {
     <ItemContext.Provider value={{ itemLocations, setItemLocations }}>
       <div>
         <Header />
-
         <br />
-
        
-
-        <div>{!isLoading ? <LoadingSpinner /> : null}</div>
         <div className="box">
           {itemLocations.itemKey === -1 && itemLocations.locationKey === -1 ? (
             <DisplayItems {...props} />
