@@ -10,7 +10,7 @@ function DisplayItems(props) {
 
   console.log('Selected Item is ', itemLocations.itemKey);
 
-  console.log(props);
+  console.log('Props are', props);
 
   console.log('In Re2');
 
@@ -21,8 +21,8 @@ function DisplayItems(props) {
 
   return (
     <div class="row">
-       <h1>Items</h1>
-       <div class="card col-sm-6 col-lg-3 border-top-0">
+      <h1>Items</h1>
+      <div class="card col-sm-6 col-lg-3 border-top-0">
         {props.itemImages
           .filter((item) => item.item_or_location === 'I')
           .map((item) => (
@@ -32,8 +32,8 @@ function DisplayItems(props) {
                 <Card.Title>{item.name}</Card.Title>
                 <Card.Text>{}</Card.Text>
                 <button
-                type="button" class="btn btn-primary"
-                  
+                  type="button"
+                  class="btn btn-primary"
                   onClick={(e) => {
                     handleClick(e, item.id);
 
